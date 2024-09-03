@@ -100,7 +100,7 @@ def add_product():
 @token_required
 @cache.cached(timeout=60)
 @admin_required
-def read_products():
+def search_product():
 
      conn = connect_db()
      cursor = conn.cursor(dictionary=True) 
