@@ -69,15 +69,17 @@ def place_order():
                order_data = order_schema.load(request.json)
           except ValidationError as err:
                return jsonify(err.message), 400
-          try: 
-               new_order = orderService.place_order(order_data)
-               return order_schema.jsonify(new_order), 201
+          new_order = orderService.place_order(order_data)
+          return order_schema.jsonify(new_order), 201
           
           
 @token_required
 @cache.cached(timeout=60)
 @admin_required         
 def retrieve_order():
-     order_id = request.json['order_id']
+     try:
+          order_id = request.json['order_id']
+     except ValidationError as err:
+          return jsonify(err.message), 400
      order = orderService.retrieve_order(order_id)
      return order_schema.jsonify(order), 200
