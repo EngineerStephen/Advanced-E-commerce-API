@@ -74,7 +74,7 @@ def place_order():
                return order_schema.jsonify(new_order), 201
           
           
- @token_required
+@token_required
 @cache.cached(timeout=60)
 @admin_required         
 def retrieve_order():
