@@ -1,0 +1,129 @@
+swagger: '2.0'
+info:
+  title: "API name"
+  description: "Brief description"
+  version: "1.0.0"
+host: "127.0.0.1:5000" #working on local host
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+securityDefinitions:
+  bearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+
+paths:
+
+  /customers/login:
+    post: # Type of request
+      tags:
+        - Customers # what category this request belongs to
+      summary: "Login Endpoint (generates token)"
+      description: "Endpoint for user authentication, and token generation"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Credentials for login"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginPayload"
+      responses:
+        200:
+          description: "Login Successful"
+          schema:
+            $ref: "#/definitions/LoginResponse"
+          examples:
+            application/json:
+              auth_token: "kusdt3498uhfd943...."
+              message: "Successfully logged In"
+              status: "Success"
+
+  /customers:
+    get:
+      tags:
+        - Customers
+      summary: "Returns all customers"
+      description: "Returns all customer's information (requires token)"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "Retrieve customers successfully"
+          schema:
+            $ref: "#/definitions/AllCustomers"
+
+  /products:
+    get:
+      tags:
+        - Products
+      summary: "Returns all products"
+      description: "Returns all product's information"
+      responses:
+        200:
+          description: "Retrieve products successfully"
+          schema:
+            $ref: "#/definitions/AllProducts"
+
+
+definitions:
+  LoginPayload:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        description: "customer's username"
+      password:
+        type: "string"
+        description: "customer's password"
+    required:
+      - "username"
+      - "password"
+  
+  LoginResponse:
+    type: "object"
+    properties:
+      auth_token:
+        type: "string"
+        description: "Authorization token"
+      message:
+        type: "string"
+        description: "Successfully logged In"
+      status:
+        type: "string"
+        description: "success"
+  
+  AllCustomers:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: "Customer's ID"
+      name:
+        type: "string"
+        description: "Customer's name"
+      email:
+        type: "string"
+        description: "Customer's email"
+      phone:
+        type: "string"
+        description: "Customer's phone"
+      username: 
+        type: "string"
+        description: "Customer's username"
+      role_id:
+        type: "integer"
+        description: "Customer's role ID"
+
+  AllProducts:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        description: "Product's name"
+      price:
+        type: "number"
+        description: "Product's description"
