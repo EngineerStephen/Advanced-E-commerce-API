@@ -3,7 +3,7 @@ from models.schemas.orderSchema import order_schema, orders_schema
 from marshmallow import ValidationError
 from services import orderService
 from utils.util import user_token_wrapper
-from connection import connect_db
+# from connection import connect_db
 from utils.util import token_required, admin_required
 from caching import cache
 

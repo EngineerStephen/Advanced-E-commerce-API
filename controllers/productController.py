@@ -6,7 +6,7 @@ from marshmallow import ValidationError
 from caching import cache
 from utils.util import token_required, admin_required
 from mysql.connector import Error
-from connection import connect_db
+# from connection import connect_db
 # ======================================================================================================
 def login():
      try:
