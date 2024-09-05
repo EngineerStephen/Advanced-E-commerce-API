@@ -1,7 +1,8 @@
 swagger: '2.0'
 info:
-  title: "API name"
-  description: "Brief description"
+  title: "E-commerce API"
+  description: "
+A user-friendly platform where customers can effortlessly browse products, add them to their shopping carts, and place orders. Simultaneously, administrators have tools to manage product inventory, track orders, and ensure a seamless shopping experiences."
   version: "1.0.0"
 host: "127.0.0.1:5000" #working on local host
 schemes:
