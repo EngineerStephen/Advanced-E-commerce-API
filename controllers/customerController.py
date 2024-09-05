@@ -108,7 +108,7 @@ def add_customer():
 @token_required
 @cache.cached(timeout=60)
 @admin_required
-def read_customers():
+def read_customer():
 
     conn = connect_db()
     cursor = conn.cursor(dictionary=True) 

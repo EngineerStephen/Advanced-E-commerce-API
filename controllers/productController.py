@@ -96,11 +96,16 @@ def add_product():
                cursor.close()
                conn.close()
 
+
+
+
+
+
 # ======================================================================================================
 @token_required
 @cache.cached(timeout=60)
 @admin_required
-def search_product():
+def List_products():
 
      conn = connect_db()
      cursor = conn.cursor(dictionary=True) 

@@ -42,3 +42,37 @@ def find_all():
 def find_all_paginate(page, per_page):
     customers = db.paginate(select(Customer), page = page, per_page = per_page)
     return customers
+
+
+def add_customer(customer_data):
+    new_customer = Customer(name=customer_data['name'], email=customer_data['email'], password=customer_data['password'], phone=customer_data['phone'], username=customer_data['username'])
+    db.session.add(new_customer)
+    db.session.commit()
+
+    db.session.refresh(new_customer)
+    return new_customer
+
+def read_customer(customer_data):
+    query = select(Customer).where(Customer.id == customer_data['id'])
+    customer = db.session.execute(query).scalar_one_or_none()
+    return customer
+
+def update_customer(customer_data):
+    query = select(Customer).where(Customer.id == customer_data['id'])
+    customer = db.session.execute(query).scalar_one_or_none()
+    customer.name = customer_data['name']
+    customer.email = customer_data['email']
+    customer.password = customer_data['password']
+    customer.phone = customer_data['phone']
+    customer.username = customer_data['username']
+    db.session.commit()
+    return customer
+
+def delete_customer(customer_data):
+    query = select(Customer).where(Customer.id == customer_data['id'])
+    customer = db.session.execute(query).scalar_one_or_none()
+    db.session.delete(customer)
+    db.session.commit()
+    return customer
+
+
