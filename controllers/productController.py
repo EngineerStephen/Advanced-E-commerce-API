@@ -22,7 +22,6 @@ def login():
 
 # ======================================================================================================
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def save():  # name the controller will always be the same as the service function
 
@@ -55,7 +54,6 @@ def find_all_paginate():
 
 # ======================================================================================================
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def add_product():
      try: 
@@ -123,7 +121,6 @@ def List_products():
 
 # ======================================================================================================
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def update_product(id):
      try: 
@@ -164,7 +161,6 @@ def update_product(id):
 
 # ======================================================================================================
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def delete_product(id):
      try:

@@ -60,7 +60,6 @@ def find_all_paginate():
 # ======================================================================================================
 
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def add_customer():
     try: 
@@ -106,7 +105,6 @@ def add_customer():
 # ======================================================================================================
 
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def read_customer():
 
@@ -129,7 +127,6 @@ def read_customer():
 # ======================================================================================================
 
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def update_customer(id):
     try: 
@@ -177,7 +174,6 @@ def update_customer(id):
 # ======================================================================================================
 
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def delete_customer(id):
     try:

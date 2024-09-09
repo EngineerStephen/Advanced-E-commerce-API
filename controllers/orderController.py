@@ -9,7 +9,6 @@ from caching import cache
 
 
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def save():
      try:
@@ -50,7 +49,6 @@ def find_by_customer_id(id, token_id):
           return jsonify({"message": "You can't view other peoples orders..."})
      return orders_schema.jsonify(orders), 200
 
-+-
 
 
 @token_required
@@ -62,7 +60,6 @@ def find_by_customer_email():
      return orders_schema.jsonify(orders), 200
 
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def place_order():
           try:

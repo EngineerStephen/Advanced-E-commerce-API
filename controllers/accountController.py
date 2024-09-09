@@ -23,7 +23,6 @@ def login():
         return jsonify({'messages': 'Invalid username or password'}), 401
 # ======================================================================================================
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def save():  # Name the controller the same as the service function
 
@@ -60,7 +59,6 @@ def find_all_paginate():
 
 # ======================================================================================================
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def add_account():
     try: 
@@ -127,7 +125,6 @@ def read_accounts():
 
 # ======================================================================================================
 @token_required
-@cache.cached(timeout=60)
 @admin_required
 def update_account(id):
     try: 
