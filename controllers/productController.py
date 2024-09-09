@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from models.schemas.productSchema import product_schema, products_schema
-from services import productService  # don't import the individual function, import the module as a whole
+from services import productService  
 from flask_marshmallow import Marshmallow 
 from marshmallow import ValidationError
 from caching import cache

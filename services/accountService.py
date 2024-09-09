@@ -1,14 +1,13 @@
-from database import db #need db be to serve incoming data to db
-from models.account import Account #need this to create account Objects
+from database import db
+from models.account import Account 
 from utils.util import encode_token
 
 from sqlalchemy import select
 
-def login(username, password): #Login using unique info so we don't query multiple users
+def login(username, password):
     query = select(Account).where(Account.username == username)
-    account = db.session.execute(query).scalar_one_or_none() #Query account table for a account with the password and username
-
-    if account and account.password == password:#if we have a account associated with the username, validated the password
+    account = db.session.execute(query).scalar_one_or_none()
+    if account and account.password == password:
         auth_token = encode_token(account.id, account.role.role_name)
 
         response = {

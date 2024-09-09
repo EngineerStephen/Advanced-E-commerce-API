@@ -1,14 +1,13 @@
-from database import db #need db be to serve incoming data to db
-from models.customer import Customer #need this to create Customer Objects
+from database import db 
+from models.customer import Customer 
 from utils.util import encode_token
 
 from sqlalchemy import select
 
-def login(username, password): #Login using unique info so we don't query multiple users
+def login(username, password): 
     query = select(Customer).where(Customer.username == username)
-    customer = db.session.execute(query).scalar_one_or_none() #Query customer table for a customer with the password and username
-
-    if customer and customer.password == password:#if we have a customer associated with the username, validated the password
+    customer = db.session.execute(query).scalar_one_or_none() 
+    if customer and customer.password == password:
         auth_token = encode_token(customer.id, customer.role.role_name)
 
         response = {

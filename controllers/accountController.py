@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from models.schemas.accountSchema import account_schema, accounts_schema
-from services import accountService  # Don't import the individual function, import the module as a whole
-from flask_marshmallow import Marshmallow 
+from services import accountService 
 from marshmallow import ValidationError
 from caching import cache
 from utils.util import token_required, admin_required
