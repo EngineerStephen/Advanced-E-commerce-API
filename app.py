@@ -6,6 +6,7 @@ from limiter import limiter
 from caching import cache
 from flask_swagger_ui import get_swaggerui_blueprint
 
+
 # from models.customer import Customer
 # from models.product import Product
 # from models.order import Order
@@ -46,17 +47,12 @@ def blueprint_config(app):
     
     app.register_blueprint(swagger_blueprint, url_prefix=SWAGGER_URL)
 
+
 def rate_limit_config():
-    limiter.init_app(app)  # Add this line to import the limiter module
-    limiter.limit("100 per day")(customer_blueprint, product_blueprint, order_blueprint, account_blueprint)
-    
+    limiter.limit("100 per day")
 
 
 app = create_app('ProductionConfig')
-db.init_app(app)
-ma.init_app(app)
-limiter.init_app(app)
-cache.init_app(app)
 
 
 with app.app_context():

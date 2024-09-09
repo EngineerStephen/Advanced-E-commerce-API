@@ -4,7 +4,7 @@ from typing import List
 from models.role import Role
 
 class Account(Base):
-    __tablename__ = 'Customers'
+    __tablename__ = 'Accounts'
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(db.String(255), nullable=False)
     email: Mapped[str] = mapped_column(db.String(255), unique=True, nullable=False)
